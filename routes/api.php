@@ -24,6 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //$response->header('Content-Type', 'application/json; charset=UTF-8');
+// composer require fruitcake/laravel-cors -> для использования CORS
+//но в kernel уже все есть!
 
 Route::post('/signup', [RegistrationController::class, 'signup']); //->middleware('guest')
 Route::post('/login', [LoginController::class, 'login']); //->middleware('guest')
