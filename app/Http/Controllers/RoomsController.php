@@ -22,7 +22,7 @@ class RoomsController extends Controller
     {
         //$request->headers->set('Accept', 'application/json');
         //$request->headers->set('Content-Type', 'application/json');
-        
+
         new RoomsResource(Rooms::create($request->all()));
 
         return response()->json(
@@ -33,6 +33,32 @@ class RoomsController extends Controller
             ],
             200,
             ["content-type" => "application/json"]
+        );
+    }
+
+    public function delete($id)
+    {
+        $room = Rooms::find($id);
+
+        if ($room === null) {
+            return response()->json(
+                [
+                    "error" => [
+                        "message" => "Not found"
+                    ]
+                ],
+                403
+            );
+        }
+
+        $room->delete();
+        return response()->json(
+            [
+                "data" => [
+                    "message" => "Deleted"
+                ]
+            ],
+
         );
     }
 }

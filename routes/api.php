@@ -29,6 +29,7 @@ Route::post('/login', [LoginController::class, 'login']); //->middleware('guest'
 Route::post('/room', [RoomsController::class, 'store'])->middleware('auth:sanctum');
 Route::get('/rooms', [RoomsController::class, 'index'])->middleware('auth:sanctum');
 
+Route::delete('/room/{id}', [RoomsController::class, 'delete'])->middleware('auth:sanctum');
 
 Route::fallback(function () { // обработка не прошедших маршрутов
     return response()->json(
