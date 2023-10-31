@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreRoomsRequest;
-use App\Http\Resources\RoomsResource;
+use App\Http\Resources\RoomForUserResource;
 use App\Models\Rooms;
+use App\Models\Client;
 use Illuminate\Http\Request;
+use App\Http\Resources\RoomsResource;
+use App\Http\Requests\StoreRoomsRequest;
 use Illuminate\Support\Facades\Validator;
 
 class RoomsController extends Controller
@@ -60,5 +62,9 @@ class RoomsController extends Controller
             ],
 
         );
+    }
+
+    public function userInRoom(){
+        return RoomForUserResource::collection(Rooms::with('clients')->get());
     }
 }

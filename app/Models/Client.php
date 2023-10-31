@@ -18,8 +18,8 @@ class Client extends Model
         'birth_date' => 'datetime:Y-m-d',
     ];
 
-    public function rooms()
+    public function room()
     {
-        return $this->hasMany(Rooms::class); // один ко многим
+        return $this->belongsTo(Rooms::class);
     }
 }

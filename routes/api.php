@@ -39,6 +39,8 @@ Route::delete('/userdata/{id}', [ClientController::class, 'delete'])->middleware
 
 Route::get('/room/{id}/userdata/{iduser}', [ClientController::class, 'changeRoom'])->middleware('auth:sanctum');
 
+Route::get('/userinroom', [RoomsController::class, 'userInRoom']);
+
 Route::fallback(function () { // обработка не прошедших маршрутов
     return response()->json(
         [

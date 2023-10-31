@@ -13,7 +13,7 @@ class Rooms extends Model
         "name", "desc_data"
     ];
 
-    public function client(){
-        return $this->belongsTo(Client::class); // многие к одному
+    public function clients(){
+        return $this->hasMany(Client::class, "id_childdata");
     }
 }
