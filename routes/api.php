@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\RoomsController;
@@ -31,6 +32,8 @@ Route::get('/rooms', [RoomsController::class, 'index'])->middleware('auth:sanctu
 
 Route::delete('/room/{id}', [RoomsController::class, 'delete'])->middleware('auth:sanctum');
 
+Route::post('/register', [ClientController::class, 'register'])->middleware('auth:sanctum');
+
 Route::fallback(function () { // обработка не прошедших маршрутов
     return response()->json(
         [
@@ -38,7 +41,6 @@ Route::fallback(function () { // обработка не прошедших ма
                 "error" => "Page not found"
             ]
         ],
-        404,
-        ["content-type" => "application/json"]
+        404
     );
 });

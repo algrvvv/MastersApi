@@ -12,4 +12,8 @@ class Rooms extends Model
     protected $fillable = [
         "name", "desc_data"
     ];
+
+    public function client(){
+        return $this->belongsTo(Client::class); // многие к одному
+    }
 }
