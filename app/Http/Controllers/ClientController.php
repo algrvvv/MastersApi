@@ -63,4 +63,27 @@ class ClientController extends Controller
             ]
         ]);
     }
+
+    public function changeRoom($id, $iduser){
+        $client = Client::find($iduser);
+
+        if($client == null){
+            return response()->json([
+                "error" => [
+                    "message" => "client not found"
+                ]
+            ]);
+        }
+
+        $client->update([
+            "id_childdata" => $id
+        ]);
+
+        return response()->json([
+            "data" => [
+                "message" => "Changed"
+            ]
+        ]);
+    }
+
 }
