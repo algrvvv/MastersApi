@@ -28,3 +28,16 @@ Route::post('/login', [LoginController::class, 'login']); //->middleware('guest'
 
 Route::post('/room', [RoomsController::class, 'store'])->middleware('auth:sanctum');
 Route::get('/rooms', [RoomsController::class, 'index'])->middleware('auth:sanctum');
+
+
+Route::fallback(function () { // обработка не прошедших маршрутов
+    return response()->json(
+        [
+            "message" => [
+                "error" => "Page not found"
+            ]
+        ],
+        404,
+        ["content-type" => "application/json"]
+    );
+});

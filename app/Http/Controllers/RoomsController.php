@@ -20,7 +20,10 @@ class RoomsController extends Controller
 
     public function store(StoreRoomsRequest $request)
     {
-        $room = Rooms::create($request->all()); 
+        //$request->headers->set('Accept', 'application/json');
+        //$request->headers->set('Content-Type', 'application/json');
+        
+        new RoomsResource(Rooms::create($request->all()));
 
         return response()->json(
             [
