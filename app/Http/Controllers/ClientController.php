@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreClientRequest;
+use App\Http\Requests\UpdateClientRequest;
 use App\Http\Resources\ClientResource;
 use App\Models\Client;
 use Illuminate\Http\Request;
@@ -19,5 +20,27 @@ class ClientController extends Controller
                 "message" => "Created"
             ]
         ]);
+    }
+
+    public function update(UpdateClientRequest $request, $id)
+    {
+        $client = Client::find($id);
+
+        if ($client == null) {
+            return response()->json([
+                "error" => [
+                    "message" => "client not found"
+                ]
+            ], 403);
+        }
+
+        $client->update($request->all());
+
+        return response()->json([
+            "data" => [
+                "id" => $id,
+                "message" => "Updated"
+            ]
+        ], 200);
     }
 }

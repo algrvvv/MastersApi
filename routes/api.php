@@ -34,6 +34,8 @@ Route::delete('/room/{id}', [RoomsController::class, 'delete'])->middleware('aut
 
 Route::post('/register', [ClientController::class, 'register'])->middleware('auth:sanctum');
 
+Route::patch('/userdata/{id}', [ClientController::class, 'update'])->middleware('auth:sanctum');
+
 Route::fallback(function () { // обработка не прошедших маршрутов
     return response()->json(
         [
