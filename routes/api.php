@@ -44,6 +44,7 @@ Route::get('/userinroom', [RoomsController::class, 'userInRoom']);
 
 Route::post('/hotel', [HotelController::class, 'store'])->middleware('auth:sanctum');
 Route::get('/hotels', [HotelController::class, 'index'])->middleware('auth:sanctum');
+Route::delete('/hotel/{id}', [HotelController::class, 'delete'])->middleware('auth:sanctum');
 
 Route::fallback(function () { // обработка не прошедших маршрутов
     return response()->json(
