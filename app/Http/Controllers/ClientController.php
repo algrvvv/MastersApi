@@ -43,4 +43,24 @@ class ClientController extends Controller
             ]
         ], 200);
     }
+
+    public function delete($id){
+        $client = Client::find($id);
+
+        if($client == null){
+            return response()->json([
+                "error"=> [
+                    "message" => "Not found"
+                ]
+            ], 403);
+        }
+
+        $client->delete();
+
+        return response()->json([
+            "data"=> [
+                "message" => "Deleted"
+            ]
+        ]);
+    }
 }
