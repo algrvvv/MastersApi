@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\HotelController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\RoomsController;
@@ -40,6 +41,8 @@ Route::delete('/userdata/{id}', [ClientController::class, 'delete'])->middleware
 Route::get('/room/{id}/userdata/{iduser}', [ClientController::class, 'changeRoom'])->middleware('auth:sanctum');
 
 Route::get('/userinroom', [RoomsController::class, 'userInRoom']);
+
+Route::post('/hotel', [HotelController::class, 'store'])->middleware('auth:sanctum');
 
 Route::fallback(function () { // обработка не прошедших маршрутов
     return response()->json(
