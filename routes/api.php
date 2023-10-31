@@ -43,6 +43,7 @@ Route::get('/room/{id}/userdata/{iduser}', [ClientController::class, 'changeRoom
 Route::get('/userinroom', [RoomsController::class, 'userInRoom']);
 
 Route::post('/hotel', [HotelController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/hotels', [HotelController::class, 'index'])->middleware('auth:sanctum');
 
 Route::fallback(function () { // обработка не прошедших маршрутов
     return response()->json(
